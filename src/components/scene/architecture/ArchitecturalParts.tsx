@@ -33,13 +33,29 @@ export function PointedPortal({
   return (
     <group>
       <mesh position={[0, 0, -0.2]} castShadow>
-        <extrudeGeometry args={[opening, { depth: depth + 0.3, bevelEnabled: false, curveSegments: 18 }]} />
+        <extrudeGeometry
+          args={[opening, { depth: depth + 0.3, bevelEnabled: false, curveSegments: 18 }]}
+        />
         <meshStandardMaterial color={innerColor} roughness={1} />
       </mesh>
       <mesh castShadow>
         <extrudeGeometry args={[frame, { depth, bevelEnabled: false, curveSegments: 18 }]} />
         <meshStandardMaterial color={color} roughness={0.65} />
       </mesh>
+      {Array.from({ length: 9 }, (_, index) => {
+        const x = (index - 4) * (width / 9);
+        const y = height * (0.78 + (1 - Math.abs(index - 4) / 4) * 0.16);
+        return (
+          <mesh key={`tile-${index}`} position={[x, y, depth + 0.08]}>
+            <boxGeometry args={[width / 11, 0.34, 0.18]} />
+            <meshStandardMaterial
+              color={index % 2 ? "#d5b65b" : color}
+              roughness={0.45}
+              metalness={0.08}
+            />
+          </mesh>
+        );
+      })}
     </group>
   );
 }
