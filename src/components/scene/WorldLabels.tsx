@@ -4,6 +4,7 @@ import { useExperience } from "@/store/experienceStore";
 
 export function WorldLabels({ lang, hidden }: { lang: Lang; hidden: boolean }) {
   const labelsOn = useExperience((s) => s.labelsOn);
+  const locale = lang === "fa" ? "fa" : "en";
   if (!labelsOn || hidden) return null;
   return (
     <>
@@ -16,8 +17,8 @@ export function WorldLabels({ lang, hidden }: { lang: Lang; hidden: boolean }) {
           zIndexRange={[10, 0]}
         >
           <div className="world-label">
-            <span>{landmark.title.fa}</span>
-            <small>{landmark.title.en}</small>
+            <span>{landmark.title[locale]}</span>
+            <small>{landmark.title[locale === "fa" ? "en" : "fa"]}</small>
           </div>
         </Html>
       ))}

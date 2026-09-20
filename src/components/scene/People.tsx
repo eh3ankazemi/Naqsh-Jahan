@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { useCallback, useLayoutEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -17,24 +17,27 @@ export function People({ perfMode, reducedMotion }: { perfMode: boolean; reduced
     [count],
   );
 
-  const update = (elapsed: number) => {
-    const dummy = new THREE.Object3D();
-    base.forEach((person, i) => {
-      const walk = reducedMotion ? 0 : Math.sin(elapsed * 0.22 + person.phase) * 2.4;
-      dummy.position.set(person.x + walk, 1.45 * person.scale, person.z);
-      dummy.scale.setScalar(person.scale);
-      dummy.updateMatrix();
-      bodies.current?.setMatrixAt(i, dummy.matrix);
-      dummy.position.y = 3.05 * person.scale;
-      dummy.scale.setScalar(person.scale);
-      dummy.updateMatrix();
-      heads.current?.setMatrixAt(i, dummy.matrix);
-    });
-    if (bodies.current) bodies.current.instanceMatrix.needsUpdate = true;
-    if (heads.current) heads.current.instanceMatrix.needsUpdate = true;
-  };
+  const update = useCallback(
+    (elapsed: number) => {
+      const dummy = new THREE.Object3D();
+      base.forEach((person, i) => {
+        const walk = reducedMotion ? 0 : Math.sin(elapsed * 0.22 + person.phase) * 2.4;
+        dummy.position.set(person.x + walk, 1.45 * person.scale, person.z);
+        dummy.scale.setScalar(person.scale);
+        dummy.updateMatrix();
+        bodies.current?.setMatrixAt(i, dummy.matrix);
+        dummy.position.y = 3.05 * person.scale;
+        dummy.scale.setScalar(person.scale);
+        dummy.updateMatrix();
+        heads.current?.setMatrixAt(i, dummy.matrix);
+      });
+      if (bodies.current) bodies.current.instanceMatrix.needsUpdate = true;
+      if (heads.current) heads.current.instanceMatrix.needsUpdate = true;
+    },
+    [base, reducedMotion],
+  );
 
-  useLayoutEffect(() => update(0), [base]);
+  useLayoutEffect(() => update(0), [update]);
   useFrame(({ clock }) => update(clock.elapsedTime));
 
   return (

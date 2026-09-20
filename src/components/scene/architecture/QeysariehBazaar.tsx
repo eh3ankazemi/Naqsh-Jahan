@@ -26,32 +26,42 @@ export function QeysariehBazaar({ perfMode, night }: { perfMode: boolean; night:
   const bays = perfMode ? 7 : 13;
   return (
     <group name="qeysarieh-bazaar">
-      <mesh position={[0, 12, -3]} castShadow receiveShadow>
-        <boxGeometry args={[38, 24, 12]} />
+      <mesh position={[0, 12, -2]} castShadow receiveShadow>
+        <boxGeometry args={[42, 24, 14]} />
         <meshStandardMaterial color="#b88b64" roughness={0.94} />
       </mesh>
-      <group position={[0, 0.8, 3.2]}>
-        <PointedPortal width={14} height={23} depth={2.8} color="#b99d7c" />
-      </group>
-      <mesh position={[0, 25, -3]} castShadow>
-        <boxGeometry args={[24, 3, 10]} />
+      <mesh position={[0, 25.5, -2]} castShadow>
+        <boxGeometry args={[26, 3, 12]} />
         <meshStandardMaterial color="#c9ae87" roughness={0.9} />
       </mesh>
-      <mesh position={[0, 19, 3.6]}>
-        <circleGeometry args={[3.4, 32]} />
+      <group position={[0, 1.1, 3.2]}>
+        <PointedPortal width={16} height={24} depth={3.2} color="#b99d7c" />
+      </group>
+      <mesh position={[0, 20.5, 3.8]}>
+        <boxGeometry args={[20, 0.8, 0.45]} />
+        <meshStandardMaterial color="#356d79" roughness={0.58} />
+      </mesh>
+      <mesh position={[0, 18.5, 4.2]}>
+        <circleGeometry args={[3.6, 32]} />
         <meshStandardMaterial color="#42545a" roughness={0.55} />
       </mesh>
       {Array.from({ length: bays }, (_, i) => i - Math.floor(bays / 2)).map((i) => (
-        <ArcadeBay key={`left-${i}`} x={-27 - Math.abs(i) * 8.8} variation={i} />
+        <ArcadeBay key={`left-${i}`} x={-31 - Math.abs(i) * 9.2} variation={i} />
       ))}
       {Array.from({ length: bays }, (_, i) => i - Math.floor(bays / 2)).map((i) => (
-        <ArcadeBay key={`right-${i}`} x={27 + Math.abs(i) * 8.8} variation={i + 1} />
+        <ArcadeBay key={`right-${i}`} x={31 + Math.abs(i) * 9.2} variation={i + 1} />
       ))}
-      <mesh position={[0, 5, -24]} castShadow>
-        <boxGeometry args={[18, 10, 35]} />
+      <mesh position={[0, 5, -26]} castShadow>
+        <boxGeometry args={[24, 10, 32]} />
         <meshStandardMaterial color="#684a36" roughness={1} />
       </mesh>
-      {night && <pointLight position={[0, 7, 11]} color="#e5aa60" intensity={28} distance={38} />}
+      {[-15, 15].map((x) => (
+        <mesh key={`divider-${x}`} position={[x, 7, -10]} castShadow>
+          <boxGeometry args={[2.6, 12, 30]} />
+          <meshStandardMaterial color="#7e5d41" roughness={1} />
+        </mesh>
+      ))}
+      {night && <pointLight position={[0, 10, 10]} color="#e5aa60" intensity={30} distance={38} />}
     </group>
   );
 }

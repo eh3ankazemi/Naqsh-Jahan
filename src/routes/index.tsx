@@ -162,6 +162,8 @@ function Experience() {
           <Header lang={lang} hidden={hideUi} />
           <TimeController lang={lang} hidden={hideUi} />
           <ExperienceControls lang={lang} hidden={hideUi} onCapture={onCapture} />
+          <ExplorePanel lang={lang} />
+          <CameraPanel lang={lang} />
           <InfoPanel lang={lang} />
           <HelpOverlay lang={lang} />
           <AboutOverlay lang={lang} />
