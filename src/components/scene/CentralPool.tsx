@@ -33,7 +33,8 @@ export function CentralPool({ timeOfDay, perfMode }: { timeOfDay: TimeKey; perfM
     const dt = Math.min(rawDelta, 0.05);
     ripple.offset.x = (ripple.offset.x + dt * 0.008) % 1;
     ripple.offset.y = (ripple.offset.y + dt * 0.004) % 1;
-    if (water.current) water.current.color.lerp(new THREE.Color(WATER_COLORS[timeOfDay]), 1 - Math.exp(-2 * dt));
+    if (water.current)
+      water.current.color.lerp(new THREE.Color(WATER_COLORS[timeOfDay]), 1 - Math.exp(-2 * dt));
   });
 
   return (
@@ -58,18 +59,19 @@ export function CentralPool({ timeOfDay, perfMode }: { timeOfDay: TimeKey; perfM
           metalness={0.16}
         />
       </mesh>
-      {!perfMode && [-38, 0, 38].map((z) => (
-        <group key={z} position={[0, 0.8, z]}>
-          <mesh position-y={0.2}>
-            <cylinderGeometry args={[0.55, 0.75, 0.4, 16]} />
-            <meshStandardMaterial color="#8e887c" roughness={0.88} />
-          </mesh>
-          <mesh position-y={0.75}>
-            <cylinderGeometry args={[0.07, 0.15, 1.1, 10]} />
-            <meshStandardMaterial color="#b8d3d1" emissive="#6eaaa7" emissiveIntensity={0.15} />
-          </mesh>
-        </group>
-      ))}
+      {!perfMode &&
+        [-38, 0, 38].map((z) => (
+          <group key={z} position={[0, 0.8, z]}>
+            <mesh position-y={0.2}>
+              <cylinderGeometry args={[0.55, 0.75, 0.4, 16]} />
+              <meshStandardMaterial color="#8e887c" roughness={0.88} />
+            </mesh>
+            <mesh position-y={0.75}>
+              <cylinderGeometry args={[0.07, 0.15, 1.1, 10]} />
+              <meshStandardMaterial color="#b8d3d1" emissive="#6eaaa7" emissiveIntensity={0.15} />
+            </mesh>
+          </group>
+        ))}
     </group>
   );
 }

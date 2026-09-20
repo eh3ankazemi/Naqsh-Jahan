@@ -189,11 +189,7 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(
-    ellipse at 50% 45%,
-    transparent 40%,
-    oklch(0.1 0.03 262 / 0.55) 100%
-  );
+  background: radial-gradient(ellipse at 50% 45%, transparent 40%, oklch(0.1 0.03 262 / 0.55) 100%);
 }
 
 .ui-layer {
@@ -584,8 +580,11 @@ button:focus-visible {
   inset: 0;
   display: grid;
   place-items: center;
-  background:
-    radial-gradient(ellipse at 50% 60%, oklch(0.2 0.04 262 / 0.5), oklch(0.09 0.025 262 / 0.97));
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    oklch(0.2 0.04 262 / 0.5),
+    oklch(0.09 0.025 262 / 0.97)
+  );
   transition: opacity 900ms ease;
 }
 
@@ -722,19 +721,90 @@ button:focus-visible {
 }
 
 .control-dock__main,
-.control-dock__advanced { display: flex; flex-direction: column; gap: .42rem; }
-.control-dock__advanced { margin-top: .55rem; padding-top: .55rem; border-top: 1px solid var(--panel-border); animation: panel-in 240ms ease both; }
+.control-dock__advanced {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+.control-dock__advanced {
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--panel-border);
+  animation: panel-in 240ms ease both;
+}
 .explore-panel,
-.camera-panel { inset-inline-start: 1.6rem; top: 6.2rem; width: min(22rem, calc(100vw - 3.2rem)); border: 1px solid var(--panel-border); background: oklch(0.17 0.03 262 / .9); backdrop-filter: blur(14px); border-radius: .5rem; padding: 1rem; box-shadow: 0 18px 50px oklch(.08 .02 262 / .5); animation: panel-in 300ms ease both; }
-.explore-grid { display: grid; gap: .35rem; }
-.explore-item { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; width: 100%; border: 0; border-bottom: 1px solid var(--panel-border); background: transparent; color: var(--color-foreground); text-align: start; padding: .62rem .25rem; cursor: pointer; font-family: inherit; }
-.explore-item:hover { color: var(--turquoise); }
-.explore-item small { color: var(--color-muted-foreground); font-size: .62rem; text-transform: uppercase; }
-.world-label { pointer-events: none; display: grid; justify-items: center; gap: .08rem; color: oklch(.97 .015 85); text-shadow: 0 2px 8px oklch(.08 .02 262 / .9); white-space: nowrap; font-family: var(--font-fa); font-size: .74rem; }
-.world-label small { font-family: var(--font-body); font-size: .43rem; letter-spacing: .18em; opacity: .72; }
+.camera-panel {
+  inset-inline-start: 1.6rem;
+  top: 6.2rem;
+  width: min(22rem, calc(100vw - 3.2rem));
+  border: 1px solid var(--panel-border);
+  background: oklch(0.17 0.03 262 / 0.9);
+  backdrop-filter: blur(14px);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 18px 50px oklch(0.08 0.02 262 / 0.5);
+  animation: panel-in 300ms ease both;
+}
+.explore-grid {
+  display: grid;
+  gap: 0.35rem;
+}
+.explore-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--panel-border);
+  background: transparent;
+  color: var(--color-foreground);
+  text-align: start;
+  padding: 0.62rem 0.25rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.explore-item:hover {
+  color: var(--turquoise);
+}
+.explore-item small {
+  color: var(--color-muted-foreground);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+.world-label {
+  pointer-events: none;
+  display: grid;
+  justify-items: center;
+  gap: 0.08rem;
+  color: oklch(0.97 0.015 85);
+  text-shadow: 0 2px 8px oklch(0.08 0.02 262 / 0.9);
+  white-space: nowrap;
+  font-family: var(--font-fa);
+  font-size: 0.74rem;
+}
+.world-label small {
+  font-family: var(--font-body);
+  font-size: 0.43rem;
+  letter-spacing: 0.18em;
+  opacity: 0.72;
+}
 @media (max-width: 760px) {
-  .control-dock__main { flex-direction: row; }
-  .control-dock__advanced { position: absolute; bottom: 3.4rem; inset-inline-end: 0; }
-  .world-label { display: none; }
-  .explore-panel, .camera-panel { inset-inline: 1rem; width: auto; top: 5.4rem; }
+  .control-dock__main {
+    flex-direction: row;
+  }
+  .control-dock__advanced {
+    position: absolute;
+    bottom: 3.4rem;
+    inset-inline-end: 0;
+  }
+  .world-label {
+    display: none;
+  }
+  .explore-panel,
+  .camera-panel {
+    inset-inline: 1rem;
+    width: auto;
+    top: 5.4rem;
+  }
 }

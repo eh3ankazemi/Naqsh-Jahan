@@ -6,12 +6,16 @@ export function People({ perfMode, reducedMotion }: { perfMode: boolean; reduced
   const count = perfMode ? 12 : 30;
   const bodies = useRef<THREE.InstancedMesh>(null);
   const heads = useRef<THREE.InstancedMesh>(null);
-  const base = useMemo(() => Array.from({ length: count }, (_, i) => ({
-    x: (i % 2 ? -1 : 1) * (33 + (i * 17) % 58),
-    z: -145 + (i * 41) % 290,
-    phase: i * 0.71,
-    scale: 0.82 + (i % 5) * 0.06,
-  })), [count]);
+  const base = useMemo(
+    () =>
+      Array.from({ length: count }, (_, i) => ({
+        x: (i % 2 ? -1 : 1) * (33 + ((i * 17) % 58)),
+        z: -145 + ((i * 41) % 290),
+        phase: i * 0.71,
+        scale: 0.82 + (i % 5) * 0.06,
+      })),
+    [count],
+  );
 
   const update = (elapsed: number) => {
     const dummy = new THREE.Object3D();

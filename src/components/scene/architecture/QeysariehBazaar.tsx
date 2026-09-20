@@ -5,7 +5,10 @@ function ArcadeBay({ x, variation }: { x: number; variation: number }) {
     <group position-x={x}>
       <mesh position={[0, 5.5, 0]} castShadow receiveShadow>
         <boxGeometry args={[8.7, 11, 8]} />
-        <meshStandardMaterial color={variation % 3 === 0 ? "#ad835f" : "#b58d69"} roughness={0.94} />
+        <meshStandardMaterial
+          color={variation % 3 === 0 ? "#ad835f" : "#b58d69"}
+          roughness={0.94}
+        />
       </mesh>
       <mesh position={[0, 4.2, 4.08]}>
         <boxGeometry args={[4.8, 7.2, 0.45]} />

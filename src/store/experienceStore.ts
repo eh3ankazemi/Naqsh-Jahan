@@ -23,7 +23,19 @@ interface ExperienceState {
   resetCamera: () => void;
   closePanel: () => void;
   finishIntro: () => void;
-  toggle: (key: "cinematic" | "perfMode" | "soundOn" | "helpOpen" | "aboutOpen" | "labelsOn" | "exploreOpen" | "cameraOpen" | "moreOpen", value?: boolean) => void;
+  toggle: (
+    key:
+      | "cinematic"
+      | "perfMode"
+      | "soundOn"
+      | "helpOpen"
+      | "aboutOpen"
+      | "labelsOn"
+      | "exploreOpen"
+      | "cameraOpen"
+      | "moreOpen",
+    value?: boolean,
+  ) => void;
 }
 
 export const useExperience = create<ExperienceState>((set, get) => ({
@@ -46,8 +58,7 @@ export const useExperience = create<ExperienceState>((set, get) => ({
   setTimeOfDay: (timeOfDay) => set({ timeOfDay }),
   focus: (view, hotspot = null) =>
     set({ view, viewToken: get().viewToken + 1, activeHotspot: hotspot }),
-  resetCamera: () =>
-    set({ view: HERO_VIEW, viewToken: get().viewToken + 1, activeHotspot: null }),
+  resetCamera: () => set({ view: HERO_VIEW, viewToken: get().viewToken + 1, activeHotspot: null }),
   closePanel: () => set({ activeHotspot: null }),
   finishIntro: () => set({ introDone: true }),
   toggle: (key, value) => set((s) => ({ [key]: value ?? !s[key] }) as Partial<ExperienceState>),

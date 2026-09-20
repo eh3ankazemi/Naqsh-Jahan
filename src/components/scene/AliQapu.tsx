@@ -90,11 +90,17 @@ export function AliQapu({ glow = 0 }: { glow?: number }) {
               </mesh>
             )),
           )}
-          {[0, 1].map((c) => [0, 1, 2].map((r) => (
-            <mesh key={`frame-${c}-${r}`} position={[x + (c === 0 ? -1.7 : 1.7), 4.5 + r * 4.6, 8.38]} material={mats.plaster}>
-              <boxGeometry args={[2.6, 0.24, 0.18]} />
-            </mesh>
-          )))}
+          {[0, 1].map((c) =>
+            [0, 1, 2].map((r) => (
+              <mesh
+                key={`frame-${c}-${r}`}
+                position={[x + (c === 0 ? -1.7 : 1.7), 4.5 + r * 4.6, 8.38]}
+                material={mats.plaster}
+              >
+                <boxGeometry args={[2.6, 0.24, 0.18]} />
+              </mesh>
+            )),
+          )}
           {/* side pilaster */}
           <mesh position={[x + sign * 3.6, 9, 0]} castShadow material={mats.plaster}>
             <boxGeometry args={[0.5, 16, 16.4]} />
